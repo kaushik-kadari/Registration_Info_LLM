@@ -6,7 +6,9 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const chatContainerRef = useRef(null);
-  const LLM_URL = `${import.meta.env.VITE_APP_URL} + '/query'}`;
+  const LLM_URL = `${import.meta.env.VITE_APP_URL}` + "/query";
+  
+  console.log(LLM_URL);
 
   useEffect(() => {
     if (chatContainerRef.current) {
