@@ -25,8 +25,8 @@ Before you begin, ensure you have the following installed:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/registration-info-frontend.git
-   cd registration-info-frontend
+   git clone https://github.com/Kaushik0126/Registration_Info_LLM.git
+   cd Registration_Info_LLM
    ```
 
 2. **Install dependencies:**
