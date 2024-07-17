@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './ResetPassword.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -26,8 +28,10 @@ const ForgotPassword = () => {
       setMessage(response.data.message);
       await sleep(3000);
       navigate('/login');
-    } catch (err) {
-      setError(err.response?.data?.message || 'An error occurred. Please try again.');
+    } catch (error) {
+      let err = error.response;
+      toast.error(err? err.data.msg : error.message);
+      setError(err? err.data.msg : error.message);
     } finally {
       setLoading(false);
     }

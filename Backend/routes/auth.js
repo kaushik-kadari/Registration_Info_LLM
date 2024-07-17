@@ -66,7 +66,7 @@ router.post('/reset-password', async (req, res) => {
     const user = await User.findOne({ email }); // Replace with your user model and field
   
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ msg: 'User not found' });
     }
   
     // console.log("\nuser -> : " + user);
@@ -106,11 +106,11 @@ router.post('/reset-password', async (req, res) => {
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.log('Error sending email:', error);
-        return res.status(500).json({ message: error });
+        return res.status(500).json({ msg: error });
       }
   
       console.log('Email sent:', info.response);
-      res.status(200).json({ message: 'Password reset email sent successfully' });
+      res.status(200).json({ msg: 'Password reset email sent successfully' });
     });
 });
 
@@ -122,7 +122,7 @@ router.post('/set-password', async (req, res) => {
     const user = await User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: Date.now() } });
 
     if (!user) {
-      return res.status(400).json({ message: 'Password reset token is invalid or has expired' });
+      return res.status(400).json({ msg: 'Password reset token is invalid or has expired' });
     }
 
     // Hash new password and save to user
@@ -132,9 +132,9 @@ router.post('/set-password', async (req, res) => {
     user.resetPasswordExpires = undefined;
     await user.save();
 
-    res.status(200).json({ message: 'Password has been reset' });
+    res.status(200).json({ msg: 'Password has been reset' });
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error: error.message });
+    res.status(500).json({ msg: 'Server error', error: error.message });
   }
 });
 

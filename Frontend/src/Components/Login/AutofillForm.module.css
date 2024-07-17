@@ -1,0 +1,10 @@
+/* Apply background color and text color for autofilled inputField fields */
+.inputField:-webkit-autofill,
+.inputField:-webkit-autofill:hover,
+.inputField:-webkit-autofill:focus,
+.inputField:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px #09181f inset !important;
+  -webkit-text-fill-color: white !important;
+  caret-color: white !important;
+  border: none !important;
+}

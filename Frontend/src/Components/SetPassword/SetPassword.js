@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './SetPassword.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SetPassword = () => {
   const { token } = useParams();
@@ -15,6 +17,7 @@ const SetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
       setError('Passwords do not match');
       return;
     }
@@ -32,8 +35,10 @@ const SetPassword = () => {
       setMessage(response.data.message);
       await sleep(3000);
       window.location.href = '/login';
-    } catch (err) {
-      setError(err.response?.data?.message || 'An error occurred. Please try again.');
+    } catch (error) {
+      let err = error.response;
+      toast.error(err? err.data.msg : error.message);
+      setError(err? err.data.msg : error.message);
     } finally {
       setLoading(false);
     }

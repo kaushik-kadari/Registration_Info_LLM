@@ -5,6 +5,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import authService from '../../services/authService';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -27,7 +29,8 @@ const Signup = () => {
       alert('Signup successful');
     } catch (error) {
       console.log(error);
-      alert(error.response?.data?.msg);
+      let err = error.response;
+      toast.error(err? err.data.msg : error.message);
     }
     // navigate('/home');
   };
